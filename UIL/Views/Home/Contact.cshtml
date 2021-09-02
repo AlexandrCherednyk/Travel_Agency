@@ -1,0 +1,81 @@
+﻿@{
+    ViewData["Title"] = "Contact";
+}
+@section Styles{
+    <link type="text/css" rel="stylesheet" href="~/css/Contact.css" />
+    <link type="text/css" rel="stylesheet" href="~/css/ValidateError.css" />
+}
+<section class="mb-4 p-4" id="contact">
+    <h2 class="h1-responsive font-weight-bold text-center my-4">Contact us</h2>
+
+    <div class="row">
+
+        <div class="col-md-9 mb-md-0 mb-5">
+            <form class="font-weight-normal validate" id="contact-form" name="contact-form" action="mail" method="post">
+                <div class="row">
+                    <div class="col-md-6 pt-2">
+                        <div class="md-form mb-0 form-floating">
+                            <input type="text" id="name" name="name" maxlength="20" class="form-control" placeholder="Your name">
+                            <label for="name" class="">Name</label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 pt-2">
+                        <div class="md-form mb-0 form-floating">
+                            <input type="email" id="email" name="email" maxlength="60" class="form-control" placeholder="Your email">
+                            <label for="email" class="">Email</label>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row pt-2">
+                    <div class="col-md-12 ">
+                        <div class="md-form mb-0 form-floating">
+                            <input type="text" id="subject" name="subject" maxlength="100" class="form-control" placeholder="Subject">
+                            <label for="subject" class="">Subject</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row pt-2">
+                    <div class="col-md-12">
+
+                        <div class="md-form form-floating">
+                            <textarea type="text" id="message" name="message" rows="2" maxlength="1000" class="form-control md-textarea" placeholder="Your message"></textarea>
+                            <label for="message">Message</label>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="text-center pt-3">
+                    <input type="button" value="Send" class="btn btn-success rounded-pill bg-black text-white" id="contact-form-button">
+                </div>
+            </form>
+            @*<div class="status"></div>*@
+
+        </div>
+        <div class="col-md-3 text-center">
+            <ul class="list-unstyled mb-0" id="contact-info">
+                <li>
+                    <span class="icon-map-marker"></span>
+                    <p>Kharkov, Ukraine</p>
+                </li>
+
+                <li>
+                    <span class="icon-phone"></span>
+                    <p>+380 97 706 25 39</p>
+                </li>
+
+                <li>
+                    <span class="icon-envelope"></span>
+                    <p>cherednyk.alexandr@gmail.com</p>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</section>
+
+@section Scripts{
+    <script type="text/javascript" src="~/js/Contact-validate.js"></script>
+}

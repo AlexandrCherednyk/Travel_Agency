@@ -1,0 +1,19 @@
+﻿body {
+    font-family: "Trip Sans VF","Trip Sans",Arial,sans-serif;
+    font-weight: bold;
+    font-size: medium;
+}
+
+main{
+    margin-top: 85px;
+    min-height: 100%;
+}
+
+.offcanvas-body a:hover {
+    background: #ededed;
+}
+
+footer span {
+    font-size: 26px;
+}
+

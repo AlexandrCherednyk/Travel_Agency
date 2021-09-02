@@ -1,0 +1,26 @@
+﻿@model List<HotelViewModel>
+@foreach (var hotel in Model)
+{
+    <h4>@hotel.Name</h4>
+    <p>@hotel.Id</p>
+    <p>@hotel.Country</p>
+    <p>@hotel.StarRating</p>
+    @foreach (var lodging in hotel.Lodgings)
+    {
+        <h4>@lodging.PricePerNight</h4>
+        <h4>@lodging.Area</h4>
+        <h4>@lodging.AdultGuests</h4>
+        <h4>@lodging.ChildrenGuests</h4>
+        @foreach (var res in lodging.Reservations)
+        {
+            <h4>@res.Id</h4>
+            <p>@res.PricePerNight</p>
+            <p>@res.MealsType.FoodType</p>
+            <p>@res.MealsType.PricePerDay</p>
+            <p>@res.TimePeriod.Start</p>
+            <p>@res.TimePeriod.End</p>
+            <p>@res.TotalPrice</p>
+        }
+    }
+}
+

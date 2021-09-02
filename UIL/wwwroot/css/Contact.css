@@ -1,0 +1,12 @@
+﻿#contact {
+    background: #f3f3f3;
+    border-radius: 45px;
+}
+
+#contact-form {
+    font-weight: normal;
+}
+
+#contact-info span {
+    font-size: 48px;
+}

@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@section Styles{ 
+    <link type="text/css" rel="stylesheet" href="~/css/Index.css" />
+}
+
+<div class="row justify-content-md-center" id="main-container">
+    <div id="smaller-container">
+
+        <section id="section-main-nav">
+            <nav class="nav justify-content-between flex-nowrap">
+                <a class="nav-link d-flex text-black border border-dark mx-1 my-3 justify-content-between">
+                    <span>Hotels</span>
+                    <span class="icon-bed-fat"></span>
+                </a>
+                <a class="nav-link d-flex text-black border border-dark mx-1 my-3 justify-content-between">
+                    <span>Rentals</span>
+                    <span class="icon-key"></span>
+                </a>
+                <a class="nav-link d-flex text-black border border-dark mx-1 my-3 justify-content-between">
+                    <span>Tours</span>
+                    <span class="icon-suitcase"></span>
+                </a>
+                <a class="nav-link d-flex text-black border border-dark mx-1 my-3 justify-content-between">
+                    <span>Travel Forums</span>
+                    <span class="icon-comments"></span>
+                </a>
+                <a class="nav-link d-flex text-black border border-dark mx-1 my-3 justify-content-between">
+                    <span>some</span>
+                    <span class="icon-location-arrow"></span>
+                </a>
+                <a class="nav-link d-flex text-black border border-dark mx-1 my-3 justify-content-between">
+                    <span>More</span>
+                    <span class="icon-ellipsis-h"></span>
+                </a>
+            </nav>
+        </section>
+
+        <section class="d-flex justify-content-center align-items-center" id="section-search">
+            <form class="font-weight-normal px-4" id="form-search" method="post">
+                <input type="text" name="searchLine" class="d-flex form-control rounded-pill" placeholder="Where to?">
+            </form>
+        </section>
+
+    </div>
+</div>

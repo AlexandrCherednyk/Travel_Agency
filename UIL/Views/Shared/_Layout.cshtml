@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Travel Agency</title>
+    <link type="text/css" rel="stylesheet" href="~/css/iconsfont.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap-5.1.0-dist/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/css/Layout.css" />
+
+    @RenderSection("Styles", required: false);
+</head>
+<body class="d-flex flex-column min-vh-100">
+    <header class="navbar navbar-light navbar-expand-md fixed-top bg-white" id="mainHeader">
+        <nav class="container-xl flex-wrap flex-md-nowrap">
+            <button class="navbar-toggler col-md-4" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-brand d-flex col-md-4">
+                <a asp-controller="Home" asp-action="Index">
+                    <img src="~/img/logo-white_bg-black.png" width="50" height="50" />
+                </a>
+                <a class="align-items-center text-decoration-none text-dark" asp-controller="Home" asp-action="Index">
+                    <h1 class="align-items-center px-4">Travel Agency</h1>
+                </a>
+            </div>
+            <span class="d-md-none d-flex col-md-4"><!-- hidden spacer to center brand on mobile --></span>
+
+            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link rounded-pill text-black" aria-current="page" asp-controller="Home" asp-action="Index">
+                                <i class="icon-home"></i>
+                                Home
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link rounded-pill text-black" aria-current="page" asp-controller="Home" asp-action="Contact">
+                                <i class="icon-pencil"></i>
+                                Contact
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle rounded-pill text-black" href="#" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas icon-ellipsis-h"></i>
+                                More
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white text-center bg-black rounded-pill" aria-current="page" asp-controller="Home" asp-action="Index">
+                                Sign in
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container-xl">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="container-xl mt-auto d-flex justify-content-between align-content-center border-top bg-white">
+        <p class="col-md-4 py-3 my-4 text-muted">© 2021 Alexandr Cherednyk</p>
+        <a class="col-md-4 py-3 my-4 d-flex align-items-center justify-content-center" asp-controller="Home" asp-action="Index">
+            <img src="~/img/logo-white_bg-black.png" width="40" height="40" />
+        </a>
+        <ul class="nav col-md-4 py-3 my-4 d-flex justify-content-end">
+            <li class="ms-3">
+                <a class="text-muted text-decoration-none" href="#">
+                    <span class="icon-twitter"></span>
+                </a>
+            </li>
+            <li class="ms-3">
+                <a class="text-muted text-decoration-none" href="#">
+                    <span class="icon-instagram"></span>
+                </a>
+            </li>
+            <li class="ms-3">
+                <a class="text-muted text-decoration-none" href="#">
+                    <span class="icon-facebook"></span>
+                </a>
+            </li>
+            <li class="ms-3">
+                <a class="text-muted text-decoration-none" href="#">
+                    <span class="icon-telegram"></span>
+                </a>
+            </li>
+        </ul>
+    </footer>
+
+    <script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="~/lib/bootstrap-5.1.0-dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="~/js/Layout.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
