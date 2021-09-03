@@ -18,7 +18,7 @@ namespace DAL.EF
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var connectionString = @"Server=(localdb)\mssqllocaldb;Database=TravelAgency;Trusted_Connection=True;MultipleActiveResultSets=true";
+            var connectionString = @"Server=localhost;Database=TravelAgency;Trusted_Connection=True;MultipleActiveResultSets=true";
 
             optionsBuilder.UseSqlServer(connectionString);
 

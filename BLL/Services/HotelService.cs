@@ -30,12 +30,14 @@ namespace BLL.Services
         {
             var DALHotel = Database.HotelRepository.GetByDbId(id);
             var hotel = Mapper.Map<HotelDTO>(DALHotel);
+            Database.Save();
             return hotel;
         }
         public HotelDTO GetHotelByGuId(Guid id)
         {
             var DALHotel = Database.HotelRepository.GetByGuId(id);
             var hotel = Mapper.Map<HotelDTO>(DALHotel);
+            Database.Save();
             return hotel;
         }
         public List<HotelDTO> GetHotelList()

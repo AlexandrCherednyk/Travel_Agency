@@ -43,25 +43,26 @@ namespace UIL.Controllers
 
         public IActionResult Test()
         {
-            Logger.LogTrace("fuck");
-            var hotel = new HotelViewModel("Ukraine", "USA", StarRating.FiveStars);
+            //Logger.LogTrace("fuck");
+            //var hotel = new HotelViewModel("Ukraine", "USA", StarRating.FiveStars);
 
-            var guestRoom = new GuestRoomViewModel(3, RoomCategory.Luxe, 1000, 100, 1, 0);
+            //var guestRoom = new GuestRoomViewModel(3, RoomCategory.Luxe, 1000, 100, 1, 0);
 
-            var start = new DateTime(2001, 9, 24);
-            var end = new DateTime(2001, 9, 28);
-            var mealsType = new MealsTypeViewModel();
-            var reservation = new ReservationViewModel(new TimePeriodViewModel(start, end), mealsType, guestRoom.PricePerNight);
+            //var start = new DateTime(2001, 9, 24);
+            //var end = new DateTime(2001, 9, 28);
+            //var mealsType = new MealsTypeViewModel();
+            //var reservation = new ReservationViewModel(new TimePeriodViewModel(start, end), mealsType, guestRoom.PricePerNight);
 
-            guestRoom.Reservations.Add(reservation);
+            //guestRoom.Reservations.Add(reservation);
 
-            hotel.Lodgings.Add(guestRoom);
+            //hotel.Lodgings.Add(guestRoom);
 
-            HotelService.Add(Mapper.Map<HotelDTO>(hotel));
+            //HotelService.Add(Mapper.Map<HotelDTO>(hotel));
 
             //var hotel1 = Mapper.Map<HotelViewModel>(HotelService.GetHotelByGuId(new Guid("3026fd97-8fdf-4a57-960b-0213f64ff02d")));
             //HotelService.DeleteByGuId(new Guid("3026fd97-8fdf-4a57-960b-0213f64ff02d"));
             //List<HotelViewModel> hotels = new List<HotelViewModel>();
+            HotelService.DeleteByGuId(new Guid("f8fc6dab-1184-4c45-aac3-742157329669"));
 
             var hotels = Mapper.Map<List<HotelViewModel>>(HotelService.GetHotelList());
             
