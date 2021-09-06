@@ -62,7 +62,6 @@ namespace UIL.Controllers
             //var hotel1 = Mapper.Map<HotelViewModel>(HotelService.GetHotelByGuId(new Guid("3026fd97-8fdf-4a57-960b-0213f64ff02d")));
             //HotelService.DeleteByGuId(new Guid("3026fd97-8fdf-4a57-960b-0213f64ff02d"));
             //List<HotelViewModel> hotels = new List<HotelViewModel>();
-            HotelService.DeleteByGuId(new Guid("f8fc6dab-1184-4c45-aac3-742157329669"));
 
             var hotels = Mapper.Map<List<HotelViewModel>>(HotelService.GetHotelList());
             

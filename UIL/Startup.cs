@@ -35,11 +35,12 @@ namespace UIL
         {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("UserConnection")));
+                    Configuration.GetConnectionString("IdentityDataConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
 
             //DAL add db
             services.AddDbContext<DatabaseContext>(options =>
@@ -58,7 +59,8 @@ namespace UIL
             services.AddSingleton(mapper);
 
             //BLL services added 
-            services.AddTransient<IHotelService, HotelService>();
+            services.AddScoped<IHotelService, HotelService>();
+            services.AddScoped<IEmailService, EmailService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -87,7 +89,7 @@ namespace UIL
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Test}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
         }

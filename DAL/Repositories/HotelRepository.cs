@@ -62,7 +62,11 @@ namespace DAL.Repositories
 
             if (hotel != null)
             {
-                entity.DbId = hotel.DbId;
+                hotel.Name = entity.Name;
+                hotel.Country = entity.Country;
+                hotel.StarRating = entity.StarRating;
+                hotel.Lodgings = entity.Lodgings;
+
                 context.Hotels.Update(hotel);
             }
         }
