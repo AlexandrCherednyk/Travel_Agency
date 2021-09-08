@@ -29,10 +29,6 @@ namespace BLL.Models
                 return Lodgings.OrderBy(l => l.PricePerNight)
                     .First().PricePerNight;
             }
-            set
-            {
-                MaxLodgingPrice = value;
-            }
         }
         public decimal MinLodgingPrice
         {
@@ -40,10 +36,6 @@ namespace BLL.Models
             {
                 return Lodgings.OrderByDescending(l => l.PricePerNight)
                     .First().PricePerNight;
-            }
-            set
-            {
-                MinLodgingPrice = value;
             }
         }
 

@@ -1,0 +1,97 @@
+﻿@using UIL.Models.PageViewModel;
+@using UIL.App_Code;
+@model LodgingPageViewModel
+@{
+    ViewData["Title"] = "Hotels";
+}
+@section Styles{
+    <link type="text/css" rel="stylesheet" href="~/css/Hotel/Index.css" />
+}
+
+<div class="row hotelWrapper mb-5">
+    <div class="col-4 px-0">
+        <img src='@Url.Content(Model.Hotel.PathToImage)' alt="Hotel image" class="img-fluid hotelImg">
+    </div>
+
+    <div class="col-8 p-3">
+        <h4>@Model.Hotel.Name</h4>
+        <span class="icon-map-marker"> @Model.Hotel.Country</span>
+
+        <div class="row">
+            <div class="col-6 text-center border-end">
+                <p>Max  price @Model.Hotel.MaxLodgingPrice$</p>
+                <p>Min price @Model.Hotel.MinLodgingPrice$</p>
+            </div>
+
+            <div class="col-6 text-center">
+                @Html.StarRating(Model.Hotel.StarRating)
+
+                @Html.CoastLine(Model.Hotel)
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-3">
+       
+    </div>
+
+    <div class="col-md-9">
+        <nav aria-label="Page navigation example">
+
+            @foreach (var lodging in Model.Lodgings)
+            {
+                   <div class="lodgingWrapper my-2 row">
+                        <a class="text-decoration-none text-black row" asp-controller="Hotel" asp-action="" asp-route-id="">
+                            <div class="col-3 px-0">
+                                <img src='@Url.Content(lodging.PathToImage)' alt="Lodging image" class="img-fluid hotelImg">
+                            </div>
+
+                            <div class="col-9 p-1 px-2">
+                                <div class="row">
+                                    <div class="col-6 text-center border-end">
+                                        <p>Price per night: @lodging.PricePerNight$</p>
+                                        <p>Area of lodging: @lodging.Area</p>
+                                    </div>
+
+                                    <div class="col-6 text-center">
+                                        <p>Adults: @lodging.AdultGuests</p>
+                                        <p>Childrens: @lodging.ChildrenGuests</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                    </div>
+            }
+
+            <div class="row">
+                <ul class="pagination justify-content-center bg-white p-2">
+                    @if (Model.PageInfo.HasPreviousPage)
+                    {
+                        <li class="page-item mx-2">
+                            <a asp-action="Details"
+                               asp-route-id="@Model.Hotel.Id"
+                               asp-route-page="@(Model.PageInfo.PageNumber - 1)"
+                               class="page-link text-white bg-black rounded-pill">
+                                Previous
+                            </a>
+                        </li>
+                    }
+                    @if (Model.PageInfo.HasNextPage)
+                    {
+                        <li class="page-item mx-2">
+                            <a asp-action="Details"
+                               asp-route-id="@Model.Hotel.Id"
+                               asp-route-page="@(Model.PageInfo.PageNumber + 1)"
+                               class="page-link text-white bg-black rounded-pill">
+                                Next
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>

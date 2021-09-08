@@ -20,6 +20,7 @@ namespace DAL.Entities
         public int AdultGuests { get; set; }
         public int ChildrenGuests { get; set; }
         public virtual ICollection<Reservation> Reservations { get; set; }
+        public string PathToImage { get; set; }
         public int HotelId { get; set; }
         public virtual Hotel Hotel { get; set; }
 
@@ -35,6 +36,16 @@ namespace DAL.Entities
             AdultGuests = adultGuests;
             ChildrenGuests = childrenGuests;
             Reservations = new HashSet<Reservation>();
+        }
+        public Lodging(decimal pricePerNight, double area, int adultGuests, int childrenGuests, string pathToImage)
+        {
+            Id = Guid.NewGuid();
+            PricePerNight = pricePerNight;
+            Area = area;
+            AdultGuests = adultGuests;
+            ChildrenGuests = childrenGuests;
+            Reservations = new HashSet<Reservation>();
+            PathToImage = pathToImage;
         }
     }
 }

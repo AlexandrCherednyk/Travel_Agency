@@ -41,9 +41,17 @@ namespace UIL.Controllers
         }
 
         // GET: HotelController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(Guid id, int page=1)
         {
-            return View();
+            var hotel = Hotels.First(h => h.Id == id);
+            int pageSize = 10;
+            IEnumerable<LodgingViewModel> lodgingsPerPages = hotel.Lodgings.Skip((page - 1) * pageSize).Take(pageSize);
+            PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = hotel.Lodgings.Count };
+            LodgingPageViewModel ivm = new LodgingPageViewModel { Hotel = hotel, PageInfo = pageInfo, Lodgings = lodgingsPerPages };
+
+            //if(hotel!=null)
+
+            return View(ivm);
         }
 
         // GET: HotelController/Create

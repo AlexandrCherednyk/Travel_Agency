@@ -26,6 +26,11 @@ namespace UIL.Models
             RoomsNumber = roomsNumber;
             Category = roomCategory;
         }
+        public GuestRoomViewModel(int roomsNumber, RoomCategory roomCategory, decimal pricePerNight, double area, int adultGuests, int childrenGuests, string pathToImage) : base(pricePerNight, area, adultGuests, childrenGuests, pathToImage)
+        {
+            RoomsNumber = roomsNumber;
+            Category = roomCategory;
+        }
 
         public GuestRoomViewModel(int roomsNumber, RoomCategory roomCategory, Guid id, decimal pricePerNight, double area, int adultGuests, int childrenGuests) : base(id, pricePerNight, area, adultGuests, childrenGuests)
         {

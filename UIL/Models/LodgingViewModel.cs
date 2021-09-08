@@ -17,6 +17,7 @@ namespace UIL.Models
         public int AdultGuests { get; set; }
         public int ChildrenGuests { get; set; }
         public List<ReservationViewModel> Reservations { get; set; }
+        public string PathToImage { get; set; }
 
         public LodgingViewModel() { }
         public LodgingViewModel(decimal pricePerNight, double area, int adultGuests, int childrenGuests)
@@ -27,6 +28,16 @@ namespace UIL.Models
             AdultGuests = adultGuests;
             ChildrenGuests = childrenGuests;
             Reservations = new List<ReservationViewModel>();
+        }
+        public LodgingViewModel(decimal pricePerNight, double area, int adultGuests, int childrenGuests, string pathToImage)
+        {
+            Id = Guid.NewGuid();
+            PricePerNight = pricePerNight;
+            Area = area;
+            AdultGuests = adultGuests;
+            ChildrenGuests = childrenGuests;
+            Reservations = new List<ReservationViewModel>();
+            PathToImage = pathToImage;
         }
         public LodgingViewModel(Guid id, decimal pricePerNight, double area, int adultGuests, int childrenGuests)
         {

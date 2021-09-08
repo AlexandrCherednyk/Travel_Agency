@@ -19,7 +19,7 @@
             @foreach (var hotel in Model.Hotels)
             {
                 <div class="hotelWrapper my-2 row">
-                    <a class="text-decoration-none text-black row" asp-controller="Hotel" asp-action="Details" asp-route-id="">
+                    <a class="text-decoration-none text-black row" asp-controller="Hotel" asp-action="Details" asp-route-id="@hotel.Id">
                         <div class="col-3 px-0">
                             <img src='@Url.Content(hotel.PathToImage)' alt="Hotel image" class="img-fluid hotelImg">
                         </div>

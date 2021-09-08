@@ -18,6 +18,7 @@ namespace BLL.Models
         public int AdultGuests { get; set; }
         public int ChildrenGuests { get; set; }
         public List<ReservationDTO> Reservations { get; set; }
+        public string PathToImage { get; set; }
         public LodgingDTO() { }
         public LodgingDTO(decimal pricePerNight, double area, int adultGuests, int childrenGuests)
         {
@@ -27,6 +28,16 @@ namespace BLL.Models
             AdultGuests = adultGuests;
             ChildrenGuests = childrenGuests;
             Reservations = new List<ReservationDTO>();
+        }
+        public LodgingDTO(decimal pricePerNight, double area, int adultGuests, int childrenGuests, string pathToImage)
+        {
+            Id = Guid.NewGuid();
+            PricePerNight = pricePerNight;
+            Area = area;
+            AdultGuests = adultGuests;
+            ChildrenGuests = childrenGuests;
+            Reservations = new List<ReservationDTO>();
+            PathToImage = pathToImage;
         }
         public LodgingDTO(Guid id, decimal pricePerNight, double area, int adultGuests, int childrenGuests)
         {

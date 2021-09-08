@@ -41,29 +41,37 @@ namespace UIL.Controllers
             return View();
         }
 
-        public void Test()
+        public IActionResult Test()
         {
-            //Logger.LogTrace("fuck");
+            Logger.LogTrace("fuck");
             string pathToFirstImage = @"~/HotelImages/1.jpg";
             string pathToSecondImage = @"~/HotelImages/2.jpg";
-            string pathToThirdImage = @"~/HotelImages/3.jpg";
+            //string pathToThirdImage = @"~/HotelImages/3.jpg";
 
-            HotelViewModel hotel = new HotelViewModel("Ukraine", "USA", StarRating.ThreeStars, pathToFirstImage);
+            string lodgingPathToFirstImage = @"~/LodgingImages/1.jpg";
+            string lodgingPathToSecondImage = @"~/LodgingImages/2.jpg";
 
-            var guestRoom = new GuestRoomViewModel(3, RoomCategory.Luxe, 1000, 100, 1, 0);
+            HotelViewModel hotel = new HotelViewModel("Ukraine", "USA", StarRating.Starless, pathToFirstImage);
+            hotel.MaxLodgingPrice = 0;
+            hotel.MinLodgingPrice = 0;
 
-            var start = new DateTime(2001, 9, 24);
-            var end = new DateTime(2001, 9, 28);
-            var mealsType = new MealsTypeViewModel();
-            var reservation = new ReservationViewModel(new TimePeriodViewModel(start, end), mealsType, guestRoom.PricePerNight);
+            for (int counter = 0; counter < 20; counter++)
+            {
+                var guestRoom = new GuestRoomViewModel(3, RoomCategory.Luxe, 1000, 100, 1, 0, lodgingPathToFirstImage);
 
-            guestRoom.Reservations.Add(reservation);
+                var start = new DateTime(2001, 9, 24);
+                var end = new DateTime(2001, 9, 28);
+                var mealsType = new MealsTypeViewModel();
+                var reservation = new ReservationViewModel(new TimePeriodViewModel(start, end), mealsType, guestRoom.PricePerNight);
 
-            hotel.Lodgings.Add(guestRoom);
+                guestRoom.Reservations.Add(reservation);
 
+                hotel.Lodgings.Add(guestRoom);
+            }
+          
             HotelService.Add(Mapper.Map<HotelDTO>(hotel));
             
-            //return View();
+            return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -23,6 +23,12 @@ namespace UIL.Models
             RoomsNumber = roomsNumber;
             Type = type;
         }
+        public HouseViewModel(int floorsNumber, int roomsNumber, HouseType type, decimal pricePerNight, double area, int adultGuests, int childrenGuests, string pathToImage) : base(pricePerNight, area, adultGuests, childrenGuests, pathToImage)
+        {
+            FloorsNumber = floorsNumber;
+            RoomsNumber = roomsNumber;
+            Type = type;
+        }
 
         public HouseViewModel(int floorsNumber, int roomsNumber, HouseType type, Guid id, decimal pricePerNight, double area, int adultGuests, int childrenGuests) : base(id, pricePerNight, area, adultGuests, childrenGuests)
         {
