@@ -12,7 +12,7 @@ namespace BLL.Models
     public class BeachHotelDTO : HotelDTO
     {
         public DistanceFromTheSea DistanceFromTheSea { get; set; }
-
+        public BeachHotelDTO() { }
         public BeachHotelDTO(DistanceFromTheSea distanceFromTheSea, string name, string country, StarCategory starCategory) : base(name, country, starCategory)
         {
             DistanceFromTheSea = distanceFromTheSea;

@@ -20,6 +20,9 @@ namespace UIL.Models
         public string Country { get; set; }
         public StarRating StarRating { get; set; }
         public List<LodgingViewModel> Lodgings { get; set; }
+        public string PathToImage { get; set; }
+        public decimal MaxLodgingPrice { get; set; }
+        public decimal MinLodgingPrice { get; set; }
 
         public HotelViewModel() { }
         public HotelViewModel(string name, string country, StarRating starCategory)
@@ -29,6 +32,15 @@ namespace UIL.Models
             Country = country;
             StarRating = starCategory;
             Lodgings = new List<LodgingViewModel>();
+        }
+        public HotelViewModel(string name, string country, StarRating starCategory, string pathToImage)
+        {
+            Id = Guid.NewGuid();
+            Name = name;
+            Country = country;
+            StarRating = starCategory;
+            Lodgings = new List<LodgingViewModel>();
+            PathToImage = pathToImage;
         }
         public HotelViewModel(string name, string country, StarRating starCategory, List<LodgingViewModel> lodgings)
         {

@@ -1,0 +1,77 @@
+﻿@using UIL.Models.PageViewModel;
+@using UIL.App_Code;
+@model HotelPageViewModel
+@{
+    ViewData["Title"] = "Hotels";
+}
+@section Styles{
+    <link type="text/css" rel="stylesheet" href="~/css/Hotel/Index.css" />
+}
+
+<div class="row" id="HotelCatalogWrapper">
+    <div class="col-md-3">
+
+    </div>
+
+    <div class="col-md-9">
+        <nav aria-label="Page navigation example">
+
+            @foreach (var hotel in Model.Hotels)
+            {
+                <div class="hotelWrapper my-2 row">
+                    <a class="text-decoration-none text-black row" asp-controller="Hotel" asp-action="Details" asp-route-id="">
+                        <div class="col-3 px-0">
+                            <img src='@Url.Content(hotel.PathToImage)' alt="Hotel image" class="img-fluid hotelImg">
+                        </div>
+
+                        <div class="col-9 p-1 px-2">
+                            <h4>@hotel.Name</h4>
+                            <span class="icon-map-marker"> @hotel.Country</span>
+
+                            <div class="row">
+                                <div class="col-6 text-center border-end">
+                                    <p>Max  price @hotel.MaxLodgingPrice$</p>
+                                    <p>Min price @hotel.MinLodgingPrice$</p>
+                                </div>
+
+                                <div class="col-6 text-center">
+                                    @Html.StarRating(hotel.StarRating)
+
+                                    @Html.CoastLine(hotel)
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+            }
+
+            <div class="row">
+                <ul class="pagination justify-content-center bg-white p-2">
+                    @if (Model.PageInfo.HasPreviousPage)
+                    {
+                        <li class="page-item mx-2">
+                            <a asp-action="Index"
+                               asp-route-page="@(Model.PageInfo.PageNumber - 1)"
+                               class="page-link text-white bg-black rounded-pill">
+                                Previous
+                            </a>
+                        </li>
+                    }
+                    @if (Model.PageInfo.HasNextPage)
+                    {
+                        <li class="page-item mx-2">
+                            <a asp-action="Index"
+                               asp-route-page="@(Model.PageInfo.PageNumber + 1)"
+                               class="page-link text-white bg-black rounded-pill">
+                                Next
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div>
+
+        </nav>
+
+    </div>
+</div>

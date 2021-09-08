@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BLL.Models
 {
@@ -20,6 +21,32 @@ namespace BLL.Models
         public string Country { get; set; }
         public StarCategory StarRating { get; set; }
         public List<LodgingDTO> Lodgings { get; set; }
+        public string PathToImage { get; set; }
+        public decimal MaxLodgingPrice
+        { 
+            get
+            {
+                return Lodgings.OrderBy(l => l.PricePerNight)
+                    .First().PricePerNight;
+            }
+            set
+            {
+                MaxLodgingPrice = value;
+            }
+        }
+        public decimal MinLodgingPrice
+        {
+            get
+            {
+                return Lodgings.OrderByDescending(l => l.PricePerNight)
+                    .First().PricePerNight;
+            }
+            set
+            {
+                MinLodgingPrice = value;
+            }
+        }
+
         public HotelDTO() { }
         public HotelDTO(string name, string country, StarCategory starCategory)
         {
@@ -28,6 +55,15 @@ namespace BLL.Models
             Country = country;
             StarRating = starCategory;
             Lodgings = new List<LodgingDTO>();
+        }
+        public HotelDTO(string name, string country, StarCategory starCategory, string pathToImage)
+        {
+            Id = Guid.NewGuid();
+            Name = name;
+            Country = country;
+            StarRating = starCategory;
+            Lodgings = new List<LodgingDTO>();
+            PathToImage = pathToImage;
         }
         public HotelDTO(string name, string country, StarCategory starCategory, List<LodgingDTO> lodgings)
         {

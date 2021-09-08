@@ -12,8 +12,12 @@ namespace UIL.Models
     public class BeachHotelViewModel : HotelViewModel
     {
         public DistanceFromTheSea DistanceFromTheSea { get; set; }
-
+        public BeachHotelViewModel() { }
         public BeachHotelViewModel(DistanceFromTheSea distanceFromTheSea, string name, string country, StarRating starCategory) : base(name, country, starCategory)
+        {
+            DistanceFromTheSea = distanceFromTheSea;
+        }
+        public BeachHotelViewModel(DistanceFromTheSea distanceFromTheSea, string name, string country, StarRating starCategory, string pathToImage) : base(name, country, starCategory, pathToImage)
         {
             DistanceFromTheSea = distanceFromTheSea;
         }

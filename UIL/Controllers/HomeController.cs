@@ -41,31 +41,29 @@ namespace UIL.Controllers
             return View();
         }
 
-        public IActionResult Test()
+        public void Test()
         {
             //Logger.LogTrace("fuck");
-            //var hotel = new HotelViewModel("Ukraine", "USA", StarRating.FiveStars);
+            string pathToFirstImage = @"~/HotelImages/1.jpg";
+            string pathToSecondImage = @"~/HotelImages/2.jpg";
+            string pathToThirdImage = @"~/HotelImages/3.jpg";
 
-            //var guestRoom = new GuestRoomViewModel(3, RoomCategory.Luxe, 1000, 100, 1, 0);
+            HotelViewModel hotel = new HotelViewModel("Ukraine", "USA", StarRating.ThreeStars, pathToFirstImage);
 
-            //var start = new DateTime(2001, 9, 24);
-            //var end = new DateTime(2001, 9, 28);
-            //var mealsType = new MealsTypeViewModel();
-            //var reservation = new ReservationViewModel(new TimePeriodViewModel(start, end), mealsType, guestRoom.PricePerNight);
+            var guestRoom = new GuestRoomViewModel(3, RoomCategory.Luxe, 1000, 100, 1, 0);
 
-            //guestRoom.Reservations.Add(reservation);
+            var start = new DateTime(2001, 9, 24);
+            var end = new DateTime(2001, 9, 28);
+            var mealsType = new MealsTypeViewModel();
+            var reservation = new ReservationViewModel(new TimePeriodViewModel(start, end), mealsType, guestRoom.PricePerNight);
 
-            //hotel.Lodgings.Add(guestRoom);
+            guestRoom.Reservations.Add(reservation);
 
-            //HotelService.Add(Mapper.Map<HotelDTO>(hotel));
+            hotel.Lodgings.Add(guestRoom);
 
-            //var hotel1 = Mapper.Map<HotelViewModel>(HotelService.GetHotelByGuId(new Guid("3026fd97-8fdf-4a57-960b-0213f64ff02d")));
-            //HotelService.DeleteByGuId(new Guid("3026fd97-8fdf-4a57-960b-0213f64ff02d"));
-            //List<HotelViewModel> hotels = new List<HotelViewModel>();
-
-            var hotels = Mapper.Map<List<HotelViewModel>>(HotelService.GetHotelList());
+            HotelService.Add(Mapper.Map<HotelDTO>(hotel));
             
-            return View(hotels);
+            //return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

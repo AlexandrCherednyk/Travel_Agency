@@ -6,6 +6,7 @@ namespace DAL.EF
     public class DatabaseContext : DbContext
     {
         public virtual DbSet<Hotel> Hotels { get; set; }
+        public virtual DbSet<BeachHotel> BeachHotels { get; set; }
         public virtual DbSet<Lodging> Lodgings { get; set; }
         public virtual DbSet<Apartaments> Apartaments { get; set; }
         public virtual DbSet<GuestRoom> GuestRooms { get; set; }

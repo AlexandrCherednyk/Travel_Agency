@@ -1,0 +1,16 @@
+﻿body {
+    background-color: #f2f2f2;
+}
+
+.hotelWrapper {
+    background-color: #ffffff;
+}
+
+.starRating {
+    color: #f2b203;
+}
+
+.hotelImg {
+    max-height: 250px !important;
+    height: 100%;
+}
