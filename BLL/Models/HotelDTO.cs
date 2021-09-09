@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BLL.Models.Assistance_models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -21,6 +22,7 @@ namespace BLL.Models
         public string Country { get; set; }
         public StarCategory StarRating { get; set; }
         public List<LodgingDTO> Lodgings { get; set; }
+        public List<MealsTypeDTO> MealsTypes { get; set; }
         public string PathToImage { get; set; }
         public decimal MaxLodgingPrice
         { 
@@ -47,6 +49,7 @@ namespace BLL.Models
             Country = country;
             StarRating = starCategory;
             Lodgings = new List<LodgingDTO>();
+            MealsTypes = new List<MealsTypeDTO>();
         }
         public HotelDTO(string name, string country, StarCategory starCategory, string pathToImage)
         {
@@ -55,6 +58,7 @@ namespace BLL.Models
             Country = country;
             StarRating = starCategory;
             Lodgings = new List<LodgingDTO>();
+            MealsTypes = new List<MealsTypeDTO>();
             PathToImage = pathToImage;
         }
         public HotelDTO(string name, string country, StarCategory starCategory, List<LodgingDTO> lodgings)
@@ -64,6 +68,7 @@ namespace BLL.Models
             Country = country;
             StarRating = starCategory;
             Lodgings = new List<LodgingDTO>(lodgings);
+            MealsTypes = new List<MealsTypeDTO>();
         }
         public HotelDTO(Guid id, string name, string country, StarCategory starCategory, List<LodgingDTO> lodgings)
         {
@@ -72,6 +77,7 @@ namespace BLL.Models
             Country = country;
             StarRating = starCategory;
             Lodgings = new List<LodgingDTO>(lodgings);
+            MealsTypes = new List<MealsTypeDTO>();
         }
     }
 }

@@ -43,12 +43,12 @@
             @foreach (var lodging in Model.Lodgings)
             {
                    <div class="lodgingWrapper my-2 row">
-                        <a class="text-decoration-none text-black row" asp-controller="Hotel" asp-action="" asp-route-id="">
+                        <a class="text-decoration-none text-black row" asp-controller="Hotel" asp-action="Reservation" asp-route-hotelId="@Model.Hotel.Id" asp-route-lodgingId="@lodging.Id">
                             <div class="col-3 px-0">
                                 <img src='@Url.Content(lodging.PathToImage)' alt="Lodging image" class="img-fluid hotelImg">
                             </div>
 
-                            <div class="col-9 p-1 px-2">
+                            <div class="col-9 p-1 px-2 py-5">
                                 <div class="row">
                                     <div class="col-6 text-center border-end">
                                         <p>Price per night: @lodging.PricePerNight$</p>

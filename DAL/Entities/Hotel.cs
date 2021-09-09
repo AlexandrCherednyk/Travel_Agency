@@ -23,11 +23,13 @@ namespace DAL.Entities
         public string Country { get; set; }
         public StarCategory StarRating { get; set; }
         public virtual ICollection<Lodging> Lodgings { get; set; }
+        public List<MealsType> MealsTypes { get; set; }
         public string PathToImage { get; set; }
 
         public Hotel() 
         {
             Lodgings = new HashSet<Lodging>();
+            MealsTypes = new List<MealsType>();
         }
         public Hotel(string name, string country, StarCategory starCategory)
         {
@@ -36,6 +38,7 @@ namespace DAL.Entities
             Country = country;
             StarRating = starCategory;
             Lodgings = new HashSet<Lodging>();
+            MealsTypes = new List<MealsType>();
         }
         public Hotel(string name, string country, StarCategory starCategory, string pathToImage)
         {
@@ -44,6 +47,7 @@ namespace DAL.Entities
             Country = country;
             StarRating = starCategory;
             Lodgings = new HashSet<Lodging>();
+            MealsTypes = new List<MealsType>();
             PathToImage = pathToImage;
         }
     }

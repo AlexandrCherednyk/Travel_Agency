@@ -1,0 +1,68 @@
+﻿@using UIL.Models;
+@model LodgingViewModel
+@{
+    ViewData["Title"] = "Reservation";
+}
+@section Styles{
+
+    <link rel="stylesheet" href="~/lib/daterangepicker-master/daterangepicker.css">
+}
+
+<div class="row">
+
+    <div class="col-3 p-0">
+        <img src='@Url.Content(Model.PathToImage)' alt="Lodging alt" class="img-fluid" />
+    </div>
+
+    <div class="col-9">
+        <div class="row">
+            <div class="col-6 text-center border-end">
+                <p>Price per night: @Model.PricePerNight$</p>
+                <p>Area of lodging: @Model.Area</p>
+            </div>
+
+            <div class="col-6 text-center">
+                <p>Adults: @Model.AdultGuests</p>
+                <p>Childrens: @Model.ChildrenGuests</p>
+            </div>
+        </div>
+
+        <form method="post">
+            <div class="row">
+                <div class="col-6 text-center border-end">
+                    <input type="date" class="form-control" id="daterange" name="daterange" required>
+                </div>
+
+                <div class="col-6 text-center">
+                    <p>
+                        <select name="select">
+                            <option selected value="@FoodType.OnlyBed">Only bed</option>
+                            <option value="@FoodType.BedAndBreakfast">Bed and breakfast</option>
+                            <option value="@FoodType.HalfBoard">Half board</option>
+                            <option value="@FoodType.HalfBoardPlus">Half board plus</option>
+                            <option value="@FoodType.FullBoard">Full board</option>
+                            <option value="@FoodType.FullBoardPlus">Full board plus</option>
+                            <option value="@FoodType.AllInclusive">All inclusive</option>
+                            <option value="@FoodType.UltraAllInclusive">Ultra all inclusive</option>
+                        </select>
+                    </p>
+                </div>
+            </div>
+
+            <input type="submit" value="To reserve">
+        </form>
+
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#date').daterangepicker();
+    });
+</script>
+
+@section Scripts{
+    <script src="~/lib/daterangepicker-master/moment.min.js"></script>
+    <script src="~/lib/daterangepicker-master/daterangepicker.js"></script>
+}

@@ -40,81 +40,50 @@ namespace UIL.Controllers
             return View(ivm);
         }
 
-        // GET: HotelController/Details/5
+        // GET: HotelController/Details/
         public ActionResult Details(Guid id, int page=1)
         {
             var hotel = Hotels.First(h => h.Id == id);
+
+            if (hotel == null)
+            { 
+            }
+
             int pageSize = 10;
             IEnumerable<LodgingViewModel> lodgingsPerPages = hotel.Lodgings.Skip((page - 1) * pageSize).Take(pageSize);
             PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = hotel.Lodgings.Count };
             LodgingPageViewModel ivm = new LodgingPageViewModel { Hotel = hotel, PageInfo = pageInfo, Lodgings = lodgingsPerPages };
 
-            //if(hotel!=null)
-
             return View(ivm);
         }
 
-        // GET: HotelController/Create
-        public ActionResult Create()
+        [HttpGet]
+        public ActionResult Reservation(Guid hotelId, Guid lodgingId)
         {
-            return View();
+            var hotel = Hotels.First(h => h.Id == hotelId);
+            var lodging = hotel.Lodgings.First(l => l.Id == lodgingId);
+
+            Logger.LogInformation($"{hotel.MealsTypes[0].PricePerDay}");
+            Logger.LogInformation($"{hotel.MealsTypes[1].PricePerDay}");
+            Logger.LogInformation($"{hotel.MealsTypes[2].PricePerDay}");
+            Logger.LogInformation($"{hotel.MealsTypes[3].PricePerDay}");
+            Logger.LogInformation($"{hotel.MealsTypes[4].PricePerDay}");
+            Logger.LogInformation($"{hotel.MealsTypes[5].PricePerDay}");
+            Logger.LogInformation($"{hotel.MealsTypes[6].PricePerDay}");
+            Logger.LogInformation($"{hotel.MealsTypes[7].PricePerDay}");
+
+            return View(lodging);
         }
 
-        // POST: HotelController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public void Reservation(ReservationViewModel reservation)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            Logger.LogInformation($"{reservation.MealsType.FoodType}");
+            Logger.LogInformation($"{reservation.TimePeriod.Start}");
+            Logger.LogInformation($"{reservation.TimePeriod.End}");
+            Logger.LogInformation($"{reservation.PricePerNight}");
+            Logger.LogInformation($"{reservation.TotalPrice}");
         }
 
-        // GET: HotelController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: HotelController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: HotelController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: HotelController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }
