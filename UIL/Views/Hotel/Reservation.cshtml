@@ -1,42 +1,41 @@
-﻿@using UIL.Models;
-@model LodgingViewModel
+﻿@using UIL.Models.PageViewModel;
+@model ReservationPageViewModel
 @{
     ViewData["Title"] = "Reservation";
 }
 @section Styles{
-
-    <link rel="stylesheet" href="~/lib/daterangepicker-master/daterangepicker.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <link type="text/css" rel="stylesheet" href="~/css/Hotel/Index.css" />
 }
 
-<div class="row">
+<div class="row lodgingWrapper">
 
     <div class="col-3 p-0">
-        <img src='@Url.Content(Model.PathToImage)' alt="Lodging alt" class="img-fluid" />
+        <img src='@Url.Content(Model.Lodging.PathToImage)' alt="Lodging alt" class="img-fluid" />
     </div>
 
     <div class="col-9">
         <div class="row">
-            <div class="col-6 text-center border-end">
-                <p>Price per night: @Model.PricePerNight$</p>
-                <p>Area of lodging: @Model.Area</p>
+            <div class="col-md-6 text-md-center border-md-end">
+                <p>Price per night: @Model.Lodging.PricePerNight$</p>
+                <p>Area of lodging: @Model.Lodging.Area</p>
             </div>
 
-            <div class="col-6 text-center">
-                <p>Adults: @Model.AdultGuests</p>
-                <p>Childrens: @Model.ChildrenGuests</p>
+            <div class="col-md-6 text-md-center">
+                <p>Adults: @Model.Lodging.AdultGuests</p>
+                <p>Childrens: @Model.Lodging.ChildrenGuests</p>
             </div>
         </div>
 
-        <form method="post">
+        <form method="post" asp-controller="Hotel" asp-action="Reservation">
             <div class="row">
-                <div class="col-6 text-center border-end">
-                    <input type="date" class="form-control" id="daterange" name="daterange" required>
+                <div class="col-md-6 text-md-center border-md-end">
+                    <input type="text" class="form-control" id="dates" name="dates" required>
                 </div>
 
-                <div class="col-6 text-center">
-                    <p>
-                        <select name="select">
-                            <option selected value="@FoodType.OnlyBed">Only bed</option>
+                <div class="col-md-6 text-md-center">
+                        <select class="form-control" name="foodType">
+                            <option value="@FoodType.OnlyBed">Only bed</option>
                             <option value="@FoodType.BedAndBreakfast">Bed and breakfast</option>
                             <option value="@FoodType.HalfBoard">Half board</option>
                             <option value="@FoodType.HalfBoardPlus">Half board plus</option>
@@ -45,24 +44,29 @@
                             <option value="@FoodType.AllInclusive">All inclusive</option>
                             <option value="@FoodType.UltraAllInclusive">Ultra all inclusive</option>
                         </select>
-                    </p>
                 </div>
             </div>
 
-            <input type="submit" value="To reserve">
+            <div class="mt-3">
+                <input class="text-white bg-black p-3 rounded-pill" type="submit" value="To reserve" asp-route-hotelId="@Model.Hotel.Id" asp-route-lodgingId="@Model.Lodging.Id">
+            </div>
+            
         </form>
 
     </div>
 
 </div>
 
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#date').daterangepicker();
-    });
-</script>
+
 
 @section Scripts{
-    <script src="~/lib/daterangepicker-master/moment.min.js"></script>
-    <script src="~/lib/daterangepicker-master/daterangepicker.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $('input[name="dates"]').daterangepicker();
+        });
+    </script>
 }

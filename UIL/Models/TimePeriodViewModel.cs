@@ -17,6 +17,7 @@ namespace UIL.Models
         {
             return (start > Start & start < End)
                 || (end > Start & end < End)
+                || (start < Start & end > End)
                 || (start == Start & end == End);
         }
 
@@ -24,14 +25,16 @@ namespace UIL.Models
         {
             return (period.Start > Start & period.Start < End)
                 || (period.End > Start & period.End < End)
+                || (period.Start < Start & period.End > End)
                 || (period.Start == Start & period.End == End);
         }
 
-        public static bool IsInsterset (TimePeriodViewModel firstPeriod, TimePeriodViewModel secondPeriod)
+        public static bool IsInterset(TimePeriodViewModel firstPeriod, TimePeriodViewModel secondPeriod)
         {
-            return (firstPeriod.Start > secondPeriod.Start & firstPeriod.Start < secondPeriod.End)
-                || (firstPeriod.End > secondPeriod.Start & firstPeriod.End < secondPeriod.End)
-                || (firstPeriod.Start == secondPeriod.Start & firstPeriod.End == secondPeriod.End);
+            return (firstPeriod.Start > secondPeriod.Start && firstPeriod.Start < secondPeriod.End)
+                || (firstPeriod.End > secondPeriod.Start && firstPeriod.End < secondPeriod.End)
+                || (firstPeriod.Start < secondPeriod.Start && firstPeriod.End > secondPeriod.End)
+                || (firstPeriod.Start == secondPeriod.Start && firstPeriod.End == secondPeriod.End);
         }
 
         public void ChangeDate (DateTime start, DateTime end)

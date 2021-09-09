@@ -59,8 +59,8 @@ namespace UIL.Controllers
             {
                 var guestRoom = new GuestRoomViewModel(3, RoomCategory.Luxe, 1000, 100, 1, 0, lodgingPathToFirstImage);
 
-                var start = new DateTime(2001, 9, 24);
-                var end = new DateTime(2001, 9, 28);
+                var start = new DateTime(2021, 9, 24);
+                var end = new DateTime(2021, 9, 28);
                 var mealsType = new MealsTypeViewModel();
                 var reservation = new ReservationViewModel(new TimePeriodViewModel(start, end), mealsType, guestRoom.PricePerNight);
 

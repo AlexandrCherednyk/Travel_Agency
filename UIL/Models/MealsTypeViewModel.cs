@@ -1,5 +1,4 @@
-﻿using System;
-namespace UIL.Models
+﻿namespace UIL.Models
 {
     public enum FoodType
     {
@@ -32,11 +31,6 @@ namespace UIL.Models
         public decimal GetMealsTypePriceInFewDays (int daysNumber)
         {
             return PricePerDay * daysNumber;
-        }
-
-        public override string ToString()
-        {
-            return $"Meals type: {FoodType}; Price per day: {PricePerDay}.";
         }
     }
 }

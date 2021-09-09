@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using UIL.Models;
@@ -63,27 +64,59 @@ namespace UIL.Controllers
             var hotel = Hotels.First(h => h.Id == hotelId);
             var lodging = hotel.Lodgings.First(l => l.Id == lodgingId);
 
-            Logger.LogInformation($"{hotel.MealsTypes[0].PricePerDay}");
-            Logger.LogInformation($"{hotel.MealsTypes[1].PricePerDay}");
-            Logger.LogInformation($"{hotel.MealsTypes[2].PricePerDay}");
-            Logger.LogInformation($"{hotel.MealsTypes[3].PricePerDay}");
-            Logger.LogInformation($"{hotel.MealsTypes[4].PricePerDay}");
-            Logger.LogInformation($"{hotel.MealsTypes[5].PricePerDay}");
-            Logger.LogInformation($"{hotel.MealsTypes[6].PricePerDay}");
-            Logger.LogInformation($"{hotel.MealsTypes[7].PricePerDay}");
+            ReservationPageViewModel reservationPageViewModel = new ReservationPageViewModel() { Hotel = hotel, Lodging = lodging };
 
-            return View(lodging);
+            return View(reservationPageViewModel);
         }
 
         [HttpPost]
-        public void Reservation(ReservationViewModel reservation)
+        public ActionResult Reservation(string dates, FoodType foodType, Guid hotelId, Guid lodgingId)
         {
-            Logger.LogInformation($"{reservation.MealsType.FoodType}");
-            Logger.LogInformation($"{reservation.TimePeriod.Start}");
-            Logger.LogInformation($"{reservation.TimePeriod.End}");
-            Logger.LogInformation($"{reservation.PricePerNight}");
-            Logger.LogInformation($"{reservation.TotalPrice}");
-        }
+            var hotel = Hotels.First(h => h.Id == hotelId);
+            var lodging = hotel.Lodgings.First(l => l.Id == lodgingId);
 
+            //
+
+            if (hotel == null)
+            {
+                Logger.LogInformation("fuck");
+            }
+
+            string[] subDates = dates.Split("-");
+            string trimStar = subDates[0].Trim();
+            string trimEnd = subDates[1].Trim();
+
+            string[] subStar = trimStar.Split("/");
+            string[] subEnd = trimEnd.Split("/");
+
+            DateTime start = new(int.Parse(subStar[2].TrimStart('0')), int.Parse(subStar[0].TrimStart('0')), int.Parse(subStar[1]));
+            DateTime end = new(int.Parse(subEnd[2].TrimStart('0')), int.Parse(subEnd[0].TrimStart('0')), int.Parse(subEnd[1]));
+
+            decimal pricePerDay = 0;
+
+            foreach (MealsTypeViewModel mealsTypeViewModel in hotel.MealsTypes)
+            {
+                if (mealsTypeViewModel.FoodType == foodType)
+                {
+                    pricePerDay = mealsTypeViewModel.PricePerDay;
+                    break;
+                }
+            }
+
+            TimePeriodViewModel timePeriod = new TimePeriodViewModel(start, end);
+            MealsTypeViewModel mealsType = new MealsTypeViewModel(foodType, pricePerDay);
+
+            ReservationViewModel reservation = new ReservationViewModel(timePeriod, mealsType, lodging.PricePerNight);
+
+            foreach (ReservationViewModel res in lodging.Reservations)
+            {
+                if (TimePeriodViewModel.IsInterset(reservation.TimePeriod, res.TimePeriod))
+                {
+                    return RedirectToAction("Reservation", new { hotelId = hotel.Id, lodgingId = lodging.Id });
+                }
+            }
+
+            return View("SuccessfulReservation");
+        }
     }
 }

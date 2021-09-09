@@ -66,5 +66,7 @@ namespace UIL.Models
             ChildrenGuests = childrenGuests;
             Reservations = new List<ReservationViewModel>(reservations);
         }
+
+
     }
 }
