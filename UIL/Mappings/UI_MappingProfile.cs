@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using BLL.Models;
 using BLL.Models.Assistance_models;
-using DAL.Entities;
 using UIL.Models;
 
 namespace UIL.Mappings

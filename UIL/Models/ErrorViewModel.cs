@@ -1,5 +1,3 @@
-using System;
-
 namespace UIL.Models
 {
     public class ErrorViewModel

@@ -27,7 +27,6 @@ namespace DAL.EF
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            
         }
     }
 }

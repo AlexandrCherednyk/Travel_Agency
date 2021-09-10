@@ -1,13 +1,11 @@
 ﻿using AutoMapper;
 using BLL.Interfaces;
-using Microsoft.AspNetCore.Http;
+using BLL.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Threading.Tasks;
 using UIL.Models;
 using UIL.Models.PageViewModel;
 
@@ -75,11 +73,8 @@ namespace UIL.Controllers
             var hotel = Hotels.First(h => h.Id == hotelId);
             var lodging = hotel.Lodgings.First(l => l.Id == lodgingId);
 
-            //
-
             if (hotel == null)
             {
-                Logger.LogInformation("fuck");
             }
 
             string[] subDates = dates.Split("-");
@@ -115,6 +110,9 @@ namespace UIL.Controllers
                     return RedirectToAction("Reservation", new { hotelId = hotel.Id, lodgingId = lodging.Id });
                 }
             }
+
+            lodging.Reservations.Add(reservation);
+            HotelService.Update(Mapper.Map<HotelDTO>(hotel), hotel.Id);
 
             return View("SuccessfulReservation");
         }

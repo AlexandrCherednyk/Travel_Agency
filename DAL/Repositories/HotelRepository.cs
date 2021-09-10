@@ -57,8 +57,7 @@ namespace DAL.Repositories
         public void Update(Hotel entity, Guid id)
         {
             Hotel hotel = context.Hotels
-                .Where(h => h.Id == id)
-                .FirstOrDefault();
+                .First(h => h.Id == id);
 
             if (hotel != null)
             {
@@ -66,6 +65,8 @@ namespace DAL.Repositories
                 hotel.Country = entity.Country;
                 hotel.StarRating = entity.StarRating;
                 hotel.Lodgings = entity.Lodgings;
+                hotel.MealsTypes = entity.MealsTypes;
+                hotel.PathToImage = entity.PathToImage;
 
                 context.Hotels.Update(hotel);
             }
