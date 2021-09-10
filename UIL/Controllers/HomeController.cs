@@ -28,8 +28,19 @@ namespace UIL.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult Contact()
         {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Contact(EmailViewModel email)
+        {
+            if (ModelState.IsValid) {
+                return View("SuccessfulEmail");
+            }
+
             return View();
         }
 
