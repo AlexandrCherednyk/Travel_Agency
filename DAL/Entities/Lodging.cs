@@ -13,7 +13,6 @@ namespace DAL.Entities
     public abstract class Lodging
     {
         [Key]
-        public int DbId { get; set; }
         public Guid Id { get; set; }
         public decimal PricePerNight { get; set; }
         public double Area { get; set; }

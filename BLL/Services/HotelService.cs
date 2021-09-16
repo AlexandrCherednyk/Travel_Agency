@@ -25,14 +25,6 @@ namespace BLL.Services
             Database.HotelRepository.Create(hotel);
             Database.Save();
         }
-
-        public HotelDTO GetHotelByDbId(int id)
-        {
-            var DALHotel = Database.HotelRepository.GetByDbId(id);
-            var hotel = Mapper.Map<HotelDTO>(DALHotel);
-            Database.Save();
-            return hotel;
-        }
         public HotelDTO GetHotelByGuId(Guid id)
         {
             var DALHotel = Database.HotelRepository.GetByGuId(id);
@@ -51,19 +43,6 @@ namespace BLL.Services
         {
             var hotel = Mapper.Map<Hotel>(hotelDTO);
             Database.HotelRepository.Update(hotel);
-            Database.Save();
-        }
-
-        public void Update(HotelDTO hotelDTO, Guid id)
-        {
-            var hotel = Mapper.Map<Hotel>(hotelDTO);
-            Database.HotelRepository.Update(hotel);
-            Database.Save();
-        }
-
-        public void DeleteByDbId(int id)
-        {
-            Database.HotelRepository.DeleteByDbId(id);
             Database.Save();
         }
 

@@ -112,7 +112,7 @@ namespace UIL.Controllers
             }
 
             lodging.Reservations.Add(reservation);
-            HotelService.Update(Mapper.Map<HotelDTO>(hotel), hotel.Id);
+            HotelService.Update(Mapper.Map<HotelDTO>(hotel));
 
             return View("SuccessfulReservation");
         }

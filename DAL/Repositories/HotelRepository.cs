@@ -5,37 +5,26 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
     public class HotelRepository : IRepository<Hotel>
     {
-        private DatabaseContext context;
+        private DatabaseContext Context;
 
         public HotelRepository(DatabaseContext context)
         {
-            this.context = context;
+            this.Context = context;
         }
 
         public void Create(Hotel item)
         {
-            context.Hotels.Add(item);
-        }
-
-        public Hotel GetByDbId(int id)
-        {
-            return context.Hotels
-                .Include(h => h.Lodgings)
-                    .ThenInclude(l => l.Reservations)
-                        .Where(h => h.DbId == id)
-                        .FirstOrDefault();
+            Context.Hotels.Add(item);
         }
 
         public Hotel GetByGuId(Guid id)
         {
-            return context.Hotels
+            return Context.Hotels
                 .Include(h => h.Lodgings)
                     .ThenInclude(l => l.Reservations)
                         .Where(h => h.Id == id)
@@ -44,49 +33,28 @@ namespace DAL.Repositories
 
         public IEnumerable<Hotel> GetAll()
         {
-            return context.Hotels
+            return Context.Hotels
                 .Include(h => h.Lodgings)
                     .ThenInclude(l => l.Reservations);
         }
 
         public void Update(Hotel entity)
         {
-            context.Hotels.Update(entity);
-        }
+            //Context.Entry(entity).State = EntityState.Modified;
 
-        public void Update(Hotel entity, Guid id)
-        {
-            Hotel hotel = context.Hotels
-                .First(h => h.Id == id);
+            //var hotel = Context.Hotels.FirstOrDefault(h => h.Id == entity.Id);
 
-            if (hotel != null)
-            {
-                hotel.Name = entity.Name;
-                hotel.Country = entity.Country;
-                hotel.StarRating = entity.StarRating;
-                hotel.Lodgings = entity.Lodgings;
-                hotel.MealsTypes = entity.MealsTypes;
-                hotel.PathToImage = entity.PathToImage;
-
-                context.Hotels.Update(hotel);
-            }
-        }
-
-        public void DeleteByDbId(int id)
-        {
-            Hotel hotel = context.Hotels.Find(id);
-            if (hotel != null)
-                context.Hotels.Remove(hotel);
+            Context.Hotels.Update(entity);
         }
 
         public void DeleteByGuid(Guid id)
         {
-            Hotel hotel = context.Hotels
+            Hotel hotel = Context.Hotels
                .Where(h => h.Id == id)
                .FirstOrDefault();
 
             if (hotel != null)
-                context.Hotels.Remove(hotel);
+                Context.Hotels.Remove(hotel);
         }
     }
 }

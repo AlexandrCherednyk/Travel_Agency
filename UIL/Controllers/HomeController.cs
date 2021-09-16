@@ -41,7 +41,7 @@ namespace UIL.Controllers
                 return View("SuccessfulEmail");
             }
 
-            return View();
+            return View("Contact");
         }
 
         public IActionResult Privacy()
@@ -51,36 +51,36 @@ namespace UIL.Controllers
 
         public IActionResult Test()
         {
-            //string pathToFirstImage = @"~/HotelImages/1.jpg";
-            //string pathToSecondImage = @"~/HotelImages/2.jpg";
-            //string pathToThirdImage = @"~/HotelImages/3.jpg";
+            string pathToFirstImage = @"~/HotelImages/1.jpg";
+            string pathToSecondImage = @"~/HotelImages/2.jpg";
+            string pathToThirdImage = @"~/HotelImages/3.jpg";
 
-            //string lodgingPathToFirstImage = @"~/LodgingImages/1.jpg";
-            //string lodgingPathToSecondImage = @"~/LodgingImages/2.jpg";
+            string lodgingPathToFirstImage = @"~/LodgingImages/1.jpg";
+            string lodgingPathToSecondImage = @"~/LodgingImages/2.jpg";
 
-            //HotelViewModel hotel = new HotelViewModel("Ukraine", "USA", StarRating.Starless, pathToThirdImage);
-            //hotel.MaxLodgingPrice = 0;
-            //hotel.MinLodgingPrice = 0;
+            HotelViewModel hotel = new HotelViewModel("Ukraine", "USA", StarRating.Starless, pathToThirdImage);
+            hotel.MaxLodgingPrice = 0;
+            hotel.MinLodgingPrice = 0;
 
-            //for (int counter = 0; counter < 5; counter++)
-            //{
-            //    var guestRoom = new GuestRoomViewModel(3, RoomCategory.Luxe, 1000, 100, 1, 0, lodgingPathToSecondImage);
+            for (int counter = 0; counter < 5; counter++)
+            {
+                var guestRoom = new GuestRoomViewModel(3, RoomCategory.Luxe, 1000, 100, 1, 0, lodgingPathToSecondImage);
 
-            //    var start = new DateTime(2021, 9, 24);
-            //    var end = new DateTime(2021, 9, 28);
-            //    var mealsType = new MealsTypeViewModel();
-            //    var reservation = new ReservationViewModel(new TimePeriodViewModel(start, end), mealsType, guestRoom.PricePerNight);
+                var start = new DateTime(2021, 9, 24);
+                var end = new DateTime(2021, 9, 28);
+                var mealsType = new MealsTypeViewModel();
+                var reservation = new ReservationViewModel(new TimePeriodViewModel(start, end), mealsType, guestRoom.PricePerNight);
 
-            //    guestRoom.Reservations.Add(reservation);
+                guestRoom.Reservations.Add(reservation);
 
-            //    hotel.Lodgings.Add(guestRoom);
-            //}
+                hotel.Lodgings.Add(guestRoom);
+            }
 
-            //HotelService.Add(Mapper.Map<HotelDTO>(hotel));
+            HotelService.Add(Mapper.Map<HotelDTO>(hotel));
 
-            var hotel = Mapper.Map<HotelViewModel>(HotelService.GetHotelByGuId(new Guid("72f92f80-1638-4cd0-b0e4-7c33e6ec7fe0")));
-            hotel.Name = "Hotel";
-            HotelService.Update(Mapper.Map<HotelDTO>(hotel), new Guid("72f92f80-1638-4cd0-b0e4-7c33e6ec7fe0"));
+            //var hotel = Mapper.Map<HotelViewModel>(HotelService.GetHotelByGuId(new Guid("72f92f80-1638-4cd0-b0e4-7c33e6ec7fe0")));
+            //hotel.Name = "Hotel";
+            //HotelService.DeleteByGuId(new Guid("72f92f80-1638-4cd0-b0e4-7c33e6ec7fe0"));
 
             return View();
         }
